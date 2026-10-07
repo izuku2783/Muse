@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: muse-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: muse
+      POSTGRES_USER: muse
+      POSTGRES_PASSWORD: muse_password
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - muse_postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U muse -d muse"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+volumes:
+  muse_postgres_data:
