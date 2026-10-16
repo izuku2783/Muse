@@ -8,6 +8,7 @@ from sqlalchemy import (
     String,
     Table,
     Column,
+    UniqueConstraint,
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -52,6 +53,9 @@ artist_genres = Table(
 
 class Artist(Base):
     __tablename__ = "artists"
+    __table_args__ = (
+        UniqueConstraint("provider", "provider_id", name="uq_artist_provider_id"),
+    )
 
     id: Mapped[int] = mapped_column(
         Integer,
@@ -67,7 +71,6 @@ class Artist(Base):
     provider_id: Mapped[str] = mapped_column(
         String(255),
         nullable=False,
-        unique=True,
     )
 
     name: Mapped[str] = mapped_column(
@@ -107,6 +110,7 @@ class Artist(Base):
 
     albums: Mapped[list["Album"]] = relationship(
         back_populates="artist",
+        cascade="all, delete-orphan",
     )
 
     tracks: Mapped[list["Track"]] = relationship(
@@ -121,6 +125,9 @@ class Artist(Base):
 
 class Album(Base):
     __tablename__ = "albums"
+    __table_args__ = (
+        UniqueConstraint("provider", "provider_id", name="uq_album_provider_id"),
+    )
 
     id: Mapped[int] = mapped_column(
         Integer,
@@ -136,7 +143,6 @@ class Album(Base):
     provider_id: Mapped[str] = mapped_column(
         String(255),
         nullable=False,
-        unique=True,
     )
 
     title: Mapped[str] = mapped_column(
@@ -201,6 +207,9 @@ class Genre(Base):
 
 class Track(Base):
     __tablename__ = "tracks"
+    __table_args__ = (
+        UniqueConstraint("provider", "provider_id", name="uq_track_provider_id"),
+    )
 
     id: Mapped[int] = mapped_column(
         Integer,
@@ -216,7 +225,6 @@ class Track(Base):
     provider_id: Mapped[str] = mapped_column(
         String(255),
         nullable=False,
-        unique=True,
     )
 
     title: Mapped[str] = mapped_column(

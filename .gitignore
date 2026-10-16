@@ -33,6 +33,8 @@ dist/
 *.sqlite
 *.sqlite3
 data/local/
+data/knowledge/*.jsonl
+data/models/
 
 # Logs
 *.log

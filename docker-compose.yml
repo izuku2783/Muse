@@ -21,6 +21,19 @@ services:
       timeout: 5s
       retries: 5
 
+  qdrant:
+    image: qdrant/qdrant:v1.19.2
+    container_name: muse-qdrant
+    restart: unless-stopped
+
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+
+    volumes:
+      - muse_qdrant_data:/qdrant/storage
+
 
 volumes:
   muse_postgres_data:
+  muse_qdrant_data:

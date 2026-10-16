@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-16",
+  "benchmark": "scripts/evaluate_personalization.py",
+  "case_count": 3,
+  "k": 3,
+  "weights": {
+    "relevance": 0.5,
+    "preference": 0.2,
+    "novelty": 0.15,
+    "diversity": 0.15
+  },
+  "relevance_only": {
+    "preference_hit_rate": 0.0,
+    "avoidance_success_rate": 0.0,
+    "mean_novelty_at_k": 0.7777777777777778,
+    "mean_artist_diversity_at_k": 0.7777777777777777,
+    "mean_relevance_retention_at_k": 1.0
+  },
+  "stage17_balanced": {
+    "preference_hit_rate": 1.0,
+    "avoidance_success_rate": 1.0,
+    "mean_novelty_at_k": 0.7777777777777778,
+    "mean_artist_diversity_at_k": 0.8888888888888888,
+    "mean_relevance_retention_at_k": 0.9506172839506174
+  },
+  "decision": "Adopt the balanced preset as a configurable Stage 17 development default. It improves the synthetic preference, avoidance, and diversity checks while retaining more than 95% of top-k relevance. This small deterministic benchmark is not evidence of production recommendation quality."
+}

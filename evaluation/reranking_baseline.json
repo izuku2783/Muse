@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-09",
+  "dataset": "evaluation/semantic_retrieval.json",
+  "reranker_model": "Xenova/ms-marco-MiniLM-L-6-v2",
+  "reranker_version": "fastembed-0.8.1",
+  "candidate_limit": 20,
+  "k": 3,
+  "query_count": 5,
+  "hybrid": {
+    "mean_recall_at_k": 1.0,
+    "mean_reciprocal_rank": 1.0
+  },
+  "reranked": {
+    "mean_recall_at_k": 1.0,
+    "mean_reciprocal_rank": 1.0
+  },
+  "comparison": {
+    "recall_at_k_delta": 0.0,
+    "mrr_delta": 0.0,
+    "measurable_improvement": false,
+    "adopted_as_default": false
+  },
+  "decision": "Retain as an opt-in experimental path; the current ceiling-limited dataset does not justify replacing hybrid retrieval by default."
+}

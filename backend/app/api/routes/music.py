@@ -1,6 +1,11 @@
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, Field
+from collections.abc import Generator
 
+from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel, Field
+from sqlalchemy.orm import Session
+
+from app.database.session import get_db
+from app.services.music.errors import MusicProviderError
 from app.services.music.service import MusicService
 
 
@@ -11,7 +16,7 @@ router = APIRouter(
 
 
 class MusicSearchRequest(BaseModel):
-    query: str = Field(min_length=1)
+    query: str = Field(min_length=1, pattern=r".*\S.*")
     limit: int = Field(
         default=10,
         ge=1,
@@ -23,11 +28,22 @@ class MusicSearchRequest(BaseModel):
     )
 
 
-@router.post("")
-def search_music(request: MusicSearchRequest):
+def get_music_service(
+    db: Session = Depends(get_db),
+) -> Generator[MusicService, None, None]:
+    service = MusicService(db)
     try:
-        service = MusicService()
+        yield service
+    finally:
+        service.close()
 
+
+@router.post("")
+def search_music(
+    request: MusicSearchRequest,
+    service: MusicService = Depends(get_music_service),
+):
+    try:
         results = service.search_music(
             query=request.query,
             limit=request.limit,
@@ -43,7 +59,7 @@ def search_music(request: MusicSearchRequest):
             ],
         }
 
-    except Exception as exc:
+    except MusicProviderError as exc:
         raise HTTPException(
             status_code=502,
             detail="Music provider request failed.",

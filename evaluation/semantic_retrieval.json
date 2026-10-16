@@ -1,0 +1,96 @@
+{
+  "documents": [
+    {
+      "document_id": "track:1001",
+      "document_type": "track",
+      "content": "Midnight Circuit is a dark atmospheric electronic synthwave track with brooding nocturnal textures.",
+      "metadata": {
+        "document_type": "track",
+        "entity_id": 1001,
+        "track_id": 1001,
+        "genres": ["electronic", "synthwave"],
+        "release_year": 2018
+      }
+    },
+    {
+      "document_id": "track:1002",
+      "document_type": "track",
+      "content": "Morning Meadow is a gentle acoustic folk song led by warm fingerpicked guitar and soft vocals.",
+      "metadata": {
+        "document_type": "track",
+        "entity_id": 1002,
+        "track_id": 1002,
+        "genres": ["acoustic", "folk"],
+        "release_year": 2012
+      }
+    },
+    {
+      "document_id": "track:1003",
+      "document_type": "track",
+      "content": "Electric Summer is an upbeat dance-pop track with bright hooks and energetic club rhythms.",
+      "metadata": {
+        "document_type": "track",
+        "entity_id": 1003,
+        "track_id": 1003,
+        "genres": ["dance-pop"],
+        "release_year": 2023
+      }
+    },
+    {
+      "document_id": "album:2001",
+      "document_type": "album",
+      "content": "Still Horizons is a meditative ambient drone album built from slow evolving soundscapes and calm sustained tones.",
+      "metadata": {
+        "document_type": "album",
+        "entity_id": 2001,
+        "album_id": 2001,
+        "genres": ["ambient", "drone"],
+        "release_year": 2019
+      }
+    },
+    {
+      "document_id": "artist:3001",
+      "document_type": "artist",
+      "content": "Mara Vale is an experimental jazz artist known for improvised saxophone performances and avant-garde composition.",
+      "metadata": {
+        "document_type": "artist",
+        "entity_id": 3001,
+        "artist_id": 3001,
+        "genres": ["experimental jazz"]
+      }
+    },
+    {
+      "document_id": "genre:4001",
+      "document_type": "genre",
+      "content": "Dream pop is an ethereal pop genre characterized by hazy guitars, soft vocals, and immersive atmosphere.",
+      "metadata": {
+        "document_type": "genre",
+        "entity_id": 4001,
+        "genre_id": 4001,
+        "genres": ["dream pop"]
+      }
+    }
+  ],
+  "cases": [
+    {
+      "query": "dark atmospheric electronic music",
+      "relevant_document_ids": ["track:1001"]
+    },
+    {
+      "query": "a gentle acoustic guitar song",
+      "relevant_document_ids": ["track:1002"]
+    },
+    {
+      "query": "meditative ambient record for relaxing",
+      "relevant_document_ids": ["album:2001"]
+    },
+    {
+      "query": "experimental saxophone musician",
+      "relevant_document_ids": ["artist:3001"]
+    },
+    {
+      "query": "ethereal hazy pop genre",
+      "relevant_document_ids": ["genre:4001"]
+    }
+  ]
+}

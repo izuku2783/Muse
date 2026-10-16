@@ -5,9 +5,13 @@ pydantic-settings
 sqlalchemy
 psycopg[binary]
 python-dotenv
+cryptography
 
 httpx
 pytest
 pytest-asyncio
 
 structlog
+langgraph==1.2.15
+qdrant-client==1.19.1
+fastembed==0.8.1

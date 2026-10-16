@@ -47,3 +47,6 @@ class MusicProvider(ABC):
     ) -> list[ArtistData]:
         """Retrieve related artists where supported."""
         raise NotImplementedError
+
+    def close(self) -> None:
+        """Release provider resources, when applicable."""

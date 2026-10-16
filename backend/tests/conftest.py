@@ -4,12 +4,9 @@ import pytest
 from fastapi.testclient import TestClient
 
 
-os.environ.setdefault(
-    "DATABASE_URL",
-    "postgresql+psycopg://muse:muse_password@localhost:5432/muse",
-)
-
-os.environ.setdefault("ENVIRONMENT", "test")
+os.environ["DATABASE_URL"] = "sqlite+pysqlite:///:memory:"
+os.environ["ENVIRONMENT"] = "test"
+os.environ["DEBUG"] = "false"
 
 
 @pytest.fixture

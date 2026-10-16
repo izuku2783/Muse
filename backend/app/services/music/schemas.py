@@ -1,10 +1,20 @@
 from datetime import date
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
-class ArtistData(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+class MusicData(BaseModel):
+    model_config = ConfigDict(extra="ignore", str_strip_whitespace=True)
+
+    @field_validator("provider_id", "name", "title", check_fields=False)
+    @classmethod
+    def required_text_must_not_be_blank(cls, value: str) -> str:
+        if not value:
+            raise ValueError("must not be blank")
+        return value
+
+
+class ArtistData(MusicData):
 
     provider_id: str
     name: str
@@ -16,8 +26,7 @@ class ArtistData(BaseModel):
     external_url: str | None = None
 
 
-class AlbumData(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+class AlbumData(MusicData):
 
     provider_id: str
     title: str
@@ -27,8 +36,7 @@ class AlbumData(BaseModel):
     external_url: str | None = None
 
 
-class TrackData(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+class TrackData(MusicData):
 
     provider_id: str
     title: str

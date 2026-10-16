@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-09",
+  "dataset": "evaluation/semantic_retrieval.json",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "embedding_version": "fastembed-0.8.1-query-passage-v1",
+  "vector_dimension": 384,
+  "fusion": {
+    "method": "reciprocal_rank_fusion",
+    "rrf_k": 60
+  },
+  "k": 3,
+  "query_count": 5,
+  "semantic": {
+    "mean_recall_at_k": 1.0,
+    "mean_reciprocal_rank": 1.0
+  },
+  "hybrid": {
+    "mean_recall_at_k": 1.0,
+    "mean_reciprocal_rank": 1.0
+  },
+  "note": "Small curated regression set; not a production relevance benchmark."
+}
